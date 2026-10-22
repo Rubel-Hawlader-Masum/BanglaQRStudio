@@ -5,8 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Unzip Project
-      run: unzip BanglaQRStudio_Android.zip
+    - name: Unzip App Folder
+      run: unzip app.zip
+    - name: Create Missing Root Files
+      run: |
+        echo "include ':app'" > settings.gradle
+        echo "buildscript { repositories { google(); mavenCentral() } }" > build.gradle
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
